@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClientRepository extends CrudRepository<ClienteEntity, Long> {
-    @Query("SELECT AVG(c.edad) as promedioEdad, STDEV(c.edad) as desviacionEstandarEdad from cliente c")
+    @Query("SELECT new com.matiasjuarez.IntercorpTest.model.kpicliente.KpiClienteDTO(AVG(c.edad), sqrt((sum(c.edad*c.edad)/count(c.edad)) - (avg(c.edad) * avg(c.edad)))) from ClienteEntity c")
     KpiClienteDTO calculateClientsKPI();
 }

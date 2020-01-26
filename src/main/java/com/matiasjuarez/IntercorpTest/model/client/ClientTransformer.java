@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 public class ClientTransformer extends AbstractTransformer<ClienteDTO, ClienteEntity> {
     public ClienteDTO convertToDTO(ClienteEntity clienteEntity) {
         ClienteDTO DTO = new ClienteDTO();
+        DTO.setId(clienteEntity.getId());
         DTO.setNombre(clienteEntity.getNombre());
         DTO.setApellido(clienteEntity.getApellido());
         DTO.setEdad(clienteEntity.getEdad());

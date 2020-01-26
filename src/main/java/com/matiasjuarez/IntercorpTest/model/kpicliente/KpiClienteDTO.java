@@ -8,4 +8,12 @@ import lombok.Setter;
 public class KpiClienteDTO {
     private Double promedioEdad;
     private Double desviacionEstandarEdad;
+
+    public KpiClienteDTO(Double promedioEdad, Double desviacionEstandarEdad) {
+        this.promedioEdad = promedioEdad;
+        this.desviacionEstandarEdad = desviacionEstandarEdad;
+    }
+
+    public KpiClienteDTO() {
+    }
 }
