@@ -13,5 +13,7 @@ public class ClienteDTO {
     private String apellido;
     private Integer edad;
     private Long fechaNacimiento;
+    private String fechaNacimientoString;
     private Long fechaProbableMuerte;
+    private String fechaProbableMuerteString;
 }

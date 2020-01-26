@@ -9,9 +9,7 @@ class IntercorpTestApplicationTests {
 
 	@Test
 	void contextLoads() {
-		ZoneId.getAvailableZoneIds().forEach(
-				System.out::println
-		);
+		
 	}
 
 }

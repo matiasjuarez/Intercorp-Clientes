@@ -17,13 +17,14 @@ public class ClienteService {
     private ClientTransformer clientTransformer;
     private ClientRepository clientRepository;
     private DeathCalculationStrategy deathCalculationStrategy;
+    private DateHandler dateHandler;
 
     @Autowired
-    public ClienteService(ClientTransformer clientTransformer, ClientRepository clientRepository,
-                          DeathCalculationStrategy deathCalculationStrategy) {
+    public ClienteService(ClientTransformer clientTransformer, ClientRepository clientRepository, DeathCalculationStrategy deathCalculationStrategy, DateHandler dateHandler) {
         this.clientTransformer = clientTransformer;
         this.clientRepository = clientRepository;
         this.deathCalculationStrategy = deathCalculationStrategy;
+        this.dateHandler = dateHandler;
     }
 
     public ClienteDTO createNewClient(ClienteDTO clienteDTO) {
@@ -44,7 +45,8 @@ public class ClienteService {
         if (clienteEntities != null) {
             clienteEntities.forEach(entity -> {
                 ClienteDTO clienteDTO = clientTransformer.convertToDTO(entity);
-                clienteDTO.setFechaProbableMuerte(deathCalculationStrategy.calculateStimatedDeathDate(clienteDTO));
+                clienteDTO.setFechaProbableMuerte(deathCalculationStrategy.calculateEstimatedDeathDate(clienteDTO));
+                clienteDTO.setFechaProbableMuerteString(dateHandler.transformToFormattedString(clienteDTO.getFechaProbableMuerte()));
                 clienteDTOList.add(clienteDTO);
             });
         }
