@@ -3,6 +3,7 @@ package com.matiasjuarez.IntercorpTest.controllers;
 import com.matiasjuarez.IntercorpTest.model.client.ClienteDTO;
 import com.matiasjuarez.IntercorpTest.model.kpicliente.KpiClienteDTO;
 import com.matiasjuarez.IntercorpTest.service.ClienteService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ public class ClientController {
         this.clienteService = clienteService;
     }
 
+    @ApiOperation(value = "Allows the creation of new Cliente objects. Nombre and Apellido are mandatory. You also must send one and only one birthday field")
     @PostMapping("/creacliente")
     public ResponseEntity<ClienteDTO> createClient(@RequestBody ClienteDTO clienteDTO) {
         ClienteDTO createdClient = clienteService.createNewClient(clienteDTO);
@@ -28,6 +30,7 @@ public class ClientController {
         return ResponseEntity.ok(createdClient);
     }
 
+    @ApiOperation(value = "Calculates the ages average and the standard deviation of the ages of the Cliente entities")
     @GetMapping("/kpideclientes")
     public ResponseEntity<KpiClienteDTO> getKpiClientes() {
         KpiClienteDTO kpiClienteDTO = clienteService.calculateKpiClients();
@@ -35,6 +38,7 @@ public class ClientController {
         return ResponseEntity.ok(kpiClienteDTO);
     }
 
+    @ApiOperation(value = "Retrieves the list of all Cliente entities stored with the estimated date of death")
     @GetMapping("/listclientes")
     public ResponseEntity<List<ClienteDTO>> listClientes() {
         List<ClienteDTO> clienteDTOList = clienteService.listAllClientsWithStimatedDeathDate();
