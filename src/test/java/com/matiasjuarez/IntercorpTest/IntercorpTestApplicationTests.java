@@ -5,11 +5,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.ZoneId;
 
+@SpringBootTest
 class IntercorpTestApplicationTests {
 
 	@Test
 	void contextLoads() {
-		
 	}
 
 }

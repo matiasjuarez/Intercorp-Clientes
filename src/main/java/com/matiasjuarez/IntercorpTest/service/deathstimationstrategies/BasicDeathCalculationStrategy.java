@@ -33,7 +33,7 @@ public class BasicDeathCalculationStrategy implements DeathCalculationStrategy {
 
         long daysToBe100AgeOld = DAYS_IN_100_YEARS - daysLivedByTheClient;
 
-        // If the client is 100 years old or older, he will day today
+        // If the client is 100 years old or older, he will die today
         if (daysToBe100AgeOld <= 0) return System.currentTimeMillis();
 
         LocalDate deathDate = currentDate.plusDays((long) (daysToBe100AgeOld * DAY_OF_DEATH_MULTIPLICATOR));
